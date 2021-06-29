@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Alert, View, FlatList } from 'react-native'
 import { ListItem, Avatar, Button, Icon } from 'react-native-elements'
+import UsersContext from '../context/UsersContext'
 import users from '../data/Users'
 
 export default props => {
+
+    const { state } = useContext(UsersContext)
 
     function getUserItem({ item: user }) {
         return (
@@ -45,7 +48,7 @@ export default props => {
         <View>
             <FlatList 
                 keyExtractor={user => user.id.toString()}
-                data={users}
+                data={state.users}
                 renderItem={getUserItem}
             />
         </View>
